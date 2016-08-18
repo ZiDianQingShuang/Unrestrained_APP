@@ -1,0 +1,68 @@
+package com.unrestrained.activity;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+import com.unrestrained.R;
+
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
+
+public class UploadFileActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_upload_file);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+    }
+
+
+    public void download(View view){
+//        OkHttpClient client = new OkHttpClient();
+////        RequestBody build = new FormEncodingBuilder().add("key0","6666").build();
+//        RequestBody requestBody = new MultipartBuilder().type(MultipartBuilder.FORM).addPart(RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"),"{\"key0\":\"888777\"}")).build();//new Headers.Builder().add("head-key000","head-value00").build(),
+//        Request request = new Request.Builder().url("http://192.168.1.81:8080/file/getfile").post(requestBody).build();
+//        client.newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Request request, IOException e) {
+//                System.err.print(">>>>" + e.getMessage());
+//            }
+//
+//            @Override
+//            public void onResponse(Response response) throws IOException {
+//                System.out.print("]]]]]]]]]]]]]]]]]]"  + response.body().string());
+//            }
+//        });
+
+
+        Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).flatMap(new Func1<String, Observable<?>>() {
+            @Override
+            public Observable<?> call(String s) {
+                return null;
+            }
+        }).subscribe();
+
+
+
+    }
+
+}
