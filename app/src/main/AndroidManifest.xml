@@ -3,7 +3,7 @@
     package="com.unrestrained">
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="14"
         android:targetSdkVersion="21" />
     <permission
         android:name="com.unrestrained.permission.JPUSH_MESSAGE"
