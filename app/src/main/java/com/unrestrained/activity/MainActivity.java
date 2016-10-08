@@ -17,8 +17,8 @@ import com.unrestrained.jpushdemo.ExampleUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import cn.jpush.android.api.JPushInterface;
 
 
@@ -26,31 +26,42 @@ public class MainActivity extends AppCompatActivity {
 
     private static final Logger logger = LoggerFactory.getLogger(MainActivity.class);
 
-    @InjectView(R.id.webView)
+    @BindView(R.id.webView)
     WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         registerMessageReceiver();
         JPushInterface.init(getApplicationContext());
-        ButterKnife.inject(this);
 
         logger.info("oncreate>>>>");
 
-//      webView = (WebView) findViewById(R.id.webView);
-        webView.loadUrl("http://192.168.1.81:8080");
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setSupportZoom(true);
+        if (null != webView) {
+            webView.loadUrl("http://www.baidu.com");
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setSupportZoom(true);
 
-        webView.setWebViewClient(new WebViewClient(){
+
+         //   webView.setOnClickListener(view -> {});
+
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
                 return false;
             }
         });
+    }
+
+//        ObjectAnimator animator = ObjectAnimator.of
+//        animator.start();
+
+//        RxPermissions.getInstance(this).ensure()
+
 
     }
     private MessageReceiver mMessageReceiver;

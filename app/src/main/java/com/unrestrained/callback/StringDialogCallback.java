@@ -10,6 +10,7 @@ import com.lzy.okhttputils.request.BaseRequest;
 import okhttp3.Response;
 
 /**
+ * 加密数据的字符串请求
  * ================================================
  * 作    者：jeasonlzy（廖子尧）
  * 版    本：1.0

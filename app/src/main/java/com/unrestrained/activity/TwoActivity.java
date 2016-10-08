@@ -12,22 +12,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 import com.unrestrained.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class TwoActivity extends AppCompatActivity {
 
-    @InjectView(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
     @Override
@@ -35,7 +36,7 @@ public class TwoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two);
 
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -91,23 +92,21 @@ public class TwoActivity extends AppCompatActivity {
 //            }
             client.newCall(request).enqueue(new Callback() {
                 @Override
-                public void onFailure(Request request, IOException e) {
+                public void onFailure(Call call, IOException e) {
 
                 }
 
                 @Override
-                public void onResponse(Response response) throws IOException {
-                   String result =  response.body().string();
+                public void onResponse(Call call, Response response) throws IOException {
+                    String result = response.body().string();
                     System.out.print(result);
                 }
+
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-
-
-        
 
     }
 
