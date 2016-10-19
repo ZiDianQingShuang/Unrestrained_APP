@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
+            @SuppressWarnings(value={"unchecked", "deprecation"})
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return false;
@@ -102,7 +103,19 @@ public class MainActivity extends AppCompatActivity {
     public void forward001(View view){
         Intent intent = new Intent(this, UploadFileActivity.class);
         startActivity(intent);
+
     }
+
+
+
+    public void testMaterialDesign(View view){
+        Intent intent = new Intent(this,NewsPageActivity.class);
+        startActivity(intent);
+    }
+
+
+
+
 
     @Override
     protected void onResume() {

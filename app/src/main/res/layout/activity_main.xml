@@ -25,12 +25,15 @@
         android:text="跳转到第二页面"
         android:onClick="forward001" />
 
-    <TextView
-        android:text="Hello World!"
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:onClick="testMaterialDesign"
+        android:text="测试MaterialDesign"
+        />
 
     <WebView
+        android:visibility="gone"
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></WebView>

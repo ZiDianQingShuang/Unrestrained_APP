@@ -1,7 +1,7 @@
 package com.unrestrained;
 
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 import android.telephony.TelephonyManager;
 
 import com.unrestrained.utils.CrashHandler;
@@ -14,7 +14,7 @@ import cn.sharesdk.framework.ShareSDK;
 /**
  * Created by wangxiaofei on 2016/8/17.
  */
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
 
     private static MyApplication myApplication;
 
@@ -44,7 +44,6 @@ public class MyApplication extends Application {
         return myApplication;
     }
 
-//
 //    public ApplicationComponent getApplicationComponent() {
 //        return applicationComponent;
 //    }
