@@ -10,16 +10,21 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.unrestrained.R;
 import com.unrestrained.jpushdemo.ExampleUtil;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
+import hugo.weaving.DebugLog;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         registerMessageReceiver();
         JPushInterface.init(getApplicationContext());
 
+        EventBus.getDefault().register(this);
+
         logger.info("oncreate>>>>");
 
         if (null != webView) {
@@ -46,17 +53,17 @@ public class MainActivity extends AppCompatActivity {
             webSettings.setSupportZoom(true);
 
 
-         //   webView.setOnClickListener(view -> {});
+            //   webView.setOnClickListener(view -> {});
 
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            @SuppressWarnings(value={"unchecked", "deprecation"})
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return false;
-            }
-        });
-    }
+            webView.setWebViewClient(new WebViewClient() {
+                @Override
+                @SuppressWarnings(value = {"unchecked", "deprecation"})
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    view.loadUrl(url);
+                    return false;
+                }
+            });
+        }
 
 //        ObjectAnimator animator = ObjectAnimator.of
 //        animator.start();
@@ -64,7 +71,10 @@ public class MainActivity extends AppCompatActivity {
 //        RxPermissions.getInstance(this).ensure()
 
 
+
+
     }
+
     private MessageReceiver mMessageReceiver;
     public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
     public static final String KEY_TITLE = "title";
@@ -95,32 +105,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void forward(View view){
+    public void forward(View view) {
         Intent intent = new Intent(this, TwoActivity.class);
         startActivity(intent);
     }
 
-    public void forward001(View view){
+    public void forward001(View view) {
         Intent intent = new Intent(this, UploadFileActivity.class);
         startActivity(intent);
 
     }
 
-
-
-    public void testMaterialDesign(View view){
-        Intent intent = new Intent(this,NewsPageActivity.class);
+    public void testMaterialDesign(View view) {
+        Intent intent = new Intent(this, NewsPageActivity.class);
         startActivity(intent);
     }
 
 
-    public void refreshlistview(View view){
-        Intent intent = new Intent(this,ListRefreshActivity.class);
+    public void refreshlistview(View view) {
+        Intent intent = new Intent(this, ListRefreshActivity.class);
         startActivity(intent);
     }
 
 
+    public void testScalpe(View view){
+        Intent intent = new Intent(this,ScalpeActivity.class);
+        startActivity(intent);
+    }
 
+    public void baidumap(View view){
+        Intent intent = new Intent(this,BaiduMapActivity.class);
+        startActivity(intent);
+    }
 
 
 
@@ -136,5 +152,38 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         JPushInterface.onPause(this);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+//        if (this.getClass().equals(MainActivity.class)) {
+//            Snackbar.make(webView, "456", Snackbar.LENGTH_LONG).show();
+//        } else {
+////            super.onBackPressed();
+//        }
+    }
+
+    @Subscribe(sticky = true,threadMode =  ThreadMode.MAIN)
+    @DebugLog
+    public String callMethod(String msg) {
+        Toast.makeText(this, this.getClass().getSimpleName() + "  >>> " + msg, Toast.LENGTH_SHORT).show();
+        return "huge log";
+    }
+
+    @Subscribe(sticky = true,threadMode =  ThreadMode.MAIN)
+    @DebugLog
+    public String callFunction(Integer num){
+        System.out.println("num = "  + num);
+       // Timber.i("","");
+        return "huge log";
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
 
 }

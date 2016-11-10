@@ -39,6 +39,18 @@
         android:onClick="refreshlistview"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scalpe"
+        android:onClick="testScalpe"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="baidumap"
+        android:onClick="baidumap"
+        />
 
     <WebView
         android:visibility="gone"

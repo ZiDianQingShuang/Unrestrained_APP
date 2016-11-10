@@ -59,4 +59,8 @@ public class SomethingAdapter extends BaseRecyclerViewAdapter<String> {
         }
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
 }

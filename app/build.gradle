@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.jakewharton.hugo'
 
 android {
     compileSdkVersion 24
@@ -19,7 +20,8 @@ android {
         }
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -39,11 +41,15 @@ android {
         jniLibs.srcDirs = ['libs']  // <-- Set your folder here!
     }
 
-    dexOptions{
+    dexOptions {
         jumboMode true
         javaMaxHeapSize "4g"
         preDexLibraries false
         incremental true
+    }
+
+    dataBinding {
+        enabled = true
     }
 
 
@@ -51,6 +57,7 @@ android {
 }
 
 dependencies {
+
     //compile files('libs/jpush-android-2.1.7.jar')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //testCompile 'junit:junit:4.12'
@@ -129,17 +136,33 @@ dependencies {
     compile files('libs/httpmime-4.1.2.jar')
     compile files('libs/IndoorscapeAlbumPlugin.jar')
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.1@aar'
-    compile ('com.google.android.exoplayer:exoplayer:r2.0.2'){
-       // exclude module: 'support-v4'
+    compile('com.google.android.exoplayer:exoplayer:r2.0.2') {
+        // exclude module: 'support-v4'
     }
     //ExoPlayer 是一个开源的，App等级的媒体API
-//    compile ('org.robolectric:shadows-multidex:3.1.2'){
-//      //  exclude module: 'support-v4'
-//        exclude group: 'xmlpull', module: 'xmlpull'
-//        exclude group: 'classworlds', module: 'classworlds'
-//        exclude group: 'org.codehaus.plexus.component.composition.AbstractComponentComposer', module: 'plexus'
-//    }
 
+    //    compile ('org.robolectric:shadows-multidex:3.1.2'){
+
+    //      //  exclude module: 'support-v4'
+
+    //        exclude group: 'xmlpull', module: 'xmlpull'
+
+    //        exclude group: 'classworlds', module: 'classworlds'
+
+    //        exclude group: 'org.codehaus.plexus.component.composition.AbstractComponentComposer', module: 'plexus'
+
+    //    }
     compile 'com.android.support:multidex:1.0.1'
-
+    compile 'com.yanzhenjie.nohttp:okhttp:1.1.0'
+    //Timer就是对Logger的封装
+    compile 'com.jakewharton.timber:timber:4.3.1'
+    compile('com.jakewharton.hugo:hugo-runtime:1.2.1') {
+    }
+    compile files('libs/baidumapapi_base_v4_1_1.jar')
+    compile files('libs/baidumapapi_cloud_v4_1_1.jar')
+    compile files('libs/baidumapapi_map_v4_1_1.jar')
+    compile files('libs/baidumapapi_radar_v4_1_1.jar')
+    compile files('libs/baidumapapi_search_v4_1_1.jar')
+    compile files('libs/baidumapapi_util_v4_1_1.jar')
+    compile files('libs/locSDK_6.13.jar')
 }
