@@ -2,7 +2,6 @@ package com.unrestrained.callback;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.support.annotation.Nullable;
 import android.view.Window;
 
 import com.lzy.okhttputils.request.BaseRequest;
@@ -49,12 +48,12 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
         }
     }
 
-    @Override
-    public void onAfter(@Nullable T t, @Nullable Exception e) {
-        super.onAfter(t, e);
-        //网络请求结束后关闭对话框
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-    }
+//    @Override
+//    public void onAfter(@Nullable T t, @Nullable Exception e) {
+//        super.onAfter(t, e);
+//        //网络请求结束后关闭对话框
+//        if (dialog != null && dialog.isShowing()) {
+//            dialog.dismiss();
+//        }
+//    }
 }

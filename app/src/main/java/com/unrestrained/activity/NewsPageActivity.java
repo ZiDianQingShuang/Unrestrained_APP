@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 
+import com.dinuscxj.refresh.RecyclerRefreshLayout;
 import com.unrestrained.R;
 
 import org.greenrobot.eventbus.EventBus;
@@ -15,11 +17,17 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewsPageActivity extends AppCompatActivity {
+public class NewsPageActivity extends AppCompatActivity implements RecyclerRefreshLayout.OnRefreshListener {
 
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer_layout;
+
+    @BindView(R.id.recyclerRefreshLayout)
+    RecyclerRefreshLayout recyclerRefreshLayout;
+
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,9 @@ public class NewsPageActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+        recyclerRefreshLayout.setOnRefreshListener(this);
+
     }
 
     public void test_eventBus(View view){
@@ -46,6 +57,10 @@ public class NewsPageActivity extends AppCompatActivity {
 //        EventBus.builder().installDefaultEventBus().
         int num = 123;
         EventBus.getDefault().post(num);
+
+
+        //RxPermissions.getInstance(getApplication()).requestEach(Manifest.permission.CAMERA).ensureEach(Manifest.permission.CAMERA).ensure(Manifest.permission.CAMERA).call(new Observable<Object>())
+
     }
 
 
@@ -61,5 +76,9 @@ public class NewsPageActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+    @Override
+    public void onRefresh() {
     }
 }

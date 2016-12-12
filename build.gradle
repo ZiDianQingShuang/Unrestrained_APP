@@ -1,25 +1,51 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-buildscript {
+buildscript { //buildscript中的仓库是gradle脚本自身需要的资源
+    //构建过程需要依赖的仓库
     repositories {
         jcenter()
         mavenCentral()
     }
+
+    //构建过程需要依赖的库
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8' //butterlife
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
-
-allprojects {
+//这里面配置整个项目依赖的仓库,这样每个module就不用配置仓库了
+allprojects { //allprojects下的仓库是项目所有模块需要的资源
     repositories {
         jcenter()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+/***
+*gradle有三种仓库，maven仓库，ivy仓库以及flat本地仓库.声明方式如下：
+*maven{
+      url "..."
+}
+ivy{
+      url "..."
+}
+flatDir{
+      dirs 'xxx'
+}
+
+ 有一些仓库提供了别名，可直接使用：
+repositories{
+     mavenCentral()
+     jcenter()
+     mavenLocal()
+}
+*
+* */

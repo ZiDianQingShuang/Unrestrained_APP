@@ -2,7 +2,6 @@ package com.unrestrained.callback;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.support.annotation.Nullable;
 import android.view.Window;
 
 import com.lzy.okhttputils.request.BaseRequest;
@@ -44,14 +43,14 @@ public abstract class StringDialogCallback extends EncryptCallback<String> {
             dialog.show();
         }
     }
-
-    @Override
-    public void onAfter(@Nullable String s, @Nullable Exception e) {
-//        super.onAfter(isFromCache, s, call, response, e);
-        super.onAfter(s, e);
-        //网络请求结束后关闭对话框
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-    }
+//
+//    @Override
+//    public void onAfter(@Nullable String s, @Nullable Exception e) {
+////        super.onAfter(isFromCache, s, call, response, e);
+//        super.onAfter(s, e);
+//        //网络请求结束后关闭对话框
+//        if (dialog != null && dialog.isShowing()) {
+//            dialog.dismiss();
+//        }
+//    }
 }

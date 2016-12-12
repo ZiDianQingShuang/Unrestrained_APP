@@ -4,19 +4,15 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.telephony.TelephonyManager;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
-import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.utils.CoordinateConverter;
+import com.tbruyelle.rxpermissions.RxPermissions;
 import com.unrestrained.utils.CrashHandler;
 
 import java.util.HashSet;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.sharesdk.framework.ShareSDK;
+import rx.functions.Action1;
 
 /**
  * Created by wangxiaofei on 2016/8/17.
@@ -24,9 +20,6 @@ import cn.sharesdk.framework.ShareSDK;
 public class MyApplication extends MultiDexApplication {
 
     private static MyApplication myApplication;
-
-//    private BDLocation mBDLocation;
-
 
 //    private ApplicationComponent applicationComponent;
 
@@ -47,18 +40,23 @@ public class MyApplication extends MultiDexApplication {
         ShareSDK.initSDK(this, "16e6b45209e60");
         SDKInitializer.initialize(getApplicationContext());
 //      applicationComponent = DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
-        initBaiduBap();
-        startBaiduMapScan();
+        RxPermissions.getInstance(myApplication).request(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+                        if (aBoolean) {
+                           // Toast.makeText(getApplicationContext(), "true", Toast.LENGTH_SHORT).show();
+                        } else {
+                           // Toast.makeText(getApplicationContext(), "false", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
     }
 
     public static MyApplication getAppContext() {
         return myApplication;
     }
-
-//    public ApplicationComponent getApplicationComponent() {
-//        return applicationComponent;
-//    }
-
 
     /**
      * 获取设备的编号
@@ -69,88 +67,6 @@ public class MyApplication extends MultiDexApplication {
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         String deviceId = tm.getDeviceId();
         return deviceId;
-    }
-
-
-    /**
-     * 手机自带的GPS坐标 -> 百度GPS坐标
-     *
-     * @param lat
-     * @param lng
-     * @return
-     */
-    private LatLng gps2BaiduGPS(double lat, double lng) {
-        CoordinateConverter converter = new CoordinateConverter();
-        converter.from(CoordinateConverter.CoordType.GPS);
-        LatLng latLng = new LatLng(lat, lng);
-        converter = converter.coord(latLng);
-        return converter.convert();
-    }
-
-    private LocationClient mLocationClient;
-
-    private void initBaiduBap() {
-        mLocationClient = new LocationClient(myApplication);
-
-        LocationClientOption option = new LocationClientOption();
-        option.setCoorType(BDLocation.BDLOCATION_GCJ02_TO_BD09LL);
-        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
-        option.setOpenGps(true);
-        option.setScanSpan(1000 * 10);
-
-
-        mLocationClient.setLocOption(option);
-
-        mLocalBDLocationListener = new LocalBDLocationListener();
-
-        mLocationClient.registerLocationListener(mLocalBDLocationListener);
-    }
-
-    private LocalBDLocationListener mLocalBDLocationListener = null;
-
-    private static class LocalBDLocationListener implements BDLocationListener {
-        @Override
-        public void onReceiveLocation(BDLocation bdLocation) {
-            double latitude = bdLocation.getLatitude();
-            double longitude = bdLocation.getLongitude();
-            double altitude = bdLocation.getAltitude();
-
-            switch (bdLocation.getLocType()) {
-                case 161:
-
-                    break;
-                case 162:
-
-                    break;
-            }
-            System.out.printf("latitude = %s,longtitude = %s,altitude  = %s", latitude, longitude, altitude);
-        }
-    }
-
-    /**
-     * 开始百度地图的搜索
-     */
-    public void startBaiduMapScan() {
-        if (null != mLocationClient) {
-            mLocationClient.start();
-            if (null == mLocalBDLocationListener) {
-                mLocationClient.registerLocationListener(mLocalBDLocationListener);
-            }
-        }
-    }
-
-
-    /**
-     * 停止百度地图的搜索
-     */
-    public void stopBaiduMapScan() {
-        if (null != mLocationClient) {
-            if (null != mLocalBDLocationListener) {
-                mLocationClient.unRegisterLocationListener(mLocalBDLocationListener);
-                mLocalBDLocationListener = null;
-            }
-            mLocationClient.stop();
-        }
     }
 
 

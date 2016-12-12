@@ -65,13 +65,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-//        ObjectAnimator animator = ObjectAnimator.of
-//        animator.start();
-
-//        RxPermissions.getInstance(this).ensure()
-
-
-
 
     }
 
@@ -123,21 +116,28 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void refreshlistview(View view) {
-        Intent intent = new Intent(this, ListRefreshActivity.class);
+        Intent intent = new Intent(this, SwipeRefreshLayoutActivity.class);
         startActivity(intent);
     }
 
 
-    public void testScalpe(View view){
-        Intent intent = new Intent(this,ScalpeActivity.class);
+    public void testScalpe(View view) {
+        Intent intent = new Intent(this, ScalpeActivity.class);
         startActivity(intent);
     }
 
-    public void baidumap(View view){
-        Intent intent = new Intent(this,BaiduMapActivity.class);
+    public void baidumap(View view) {
+        Intent intent = new Intent(this, BaiduMapActivity.class);
         startActivity(intent);
     }
 
+    public void animator(View view) {
+        startActivity(new Intent(this, AnimatorActivity.class));
+    }
+
+    public void showNotification(View view) {
+//        NewMessageNotification.notify(getApplicationContext(), "通知来了", 0);
+    }
 
 
     @Override
@@ -163,18 +163,18 @@ public class MainActivity extends AppCompatActivity {
 //        }
     }
 
-    @Subscribe(sticky = true,threadMode =  ThreadMode.MAIN)
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     @DebugLog
     public String callMethod(String msg) {
         Toast.makeText(this, this.getClass().getSimpleName() + "  >>> " + msg, Toast.LENGTH_SHORT).show();
         return "huge log";
     }
 
-    @Subscribe(sticky = true,threadMode =  ThreadMode.MAIN)
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     @DebugLog
-    public String callFunction(Integer num){
-        System.out.println("num = "  + num);
-       // Timber.i("","");
+    public String callFunction(Integer num) {
+        System.out.println("num = " + num);
+        // Timber.i("","");
         return "huge log";
     }
 
@@ -182,8 +182,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
-    }
+        unregisterReceiver(mMessageReceiver);
 
+        //android.service.quicksettings.Tile
+
+    }
 
 
 }

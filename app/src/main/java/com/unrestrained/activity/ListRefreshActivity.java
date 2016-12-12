@@ -28,11 +28,6 @@ public class ListRefreshActivity extends AppCompatActivity implements SwipeRefre
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    /***
-     * 是否已经加载完了所有的数据
-     */
-    private boolean isLoadedAll;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +53,8 @@ public class ListRefreshActivity extends AppCompatActivity implements SwipeRefre
         });
 
         initRefreshListViewData();
+
+
     }
 
     @Override

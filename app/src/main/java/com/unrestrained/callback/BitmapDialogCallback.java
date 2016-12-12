@@ -2,8 +2,6 @@ package com.unrestrained.callback;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.support.annotation.Nullable;
 import android.view.Window;
 
 import com.lzy.okhttputils.callback.BitmapCallback;
@@ -37,11 +35,11 @@ public abstract class BitmapDialogCallback extends BitmapCallback {
         }
     }
 
-    @Override
-    public void onAfter(@Nullable Bitmap bitmap, @Nullable Exception e) {
-        super.onAfter(bitmap, e);
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-    }
+//    @Override
+//    public void onAfter(@Nullable Bitmap bitmap, @Nullable Exception e) {
+//        super.onAfter(bitmap, e);
+//        if (dialog != null && dialog.isShowing()) {
+//            dialog.dismiss();
+//        }
+//    }
 }

@@ -52,6 +52,19 @@
         android:onClick="baidumap"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="animator"
+        android:onClick="animator"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:text="显示通知"
+        android:onClick="showNotification"
+        android:layout_height="wrap_content" />
+
     <WebView
         android:visibility="gone"
         android:id="@+id/webView"

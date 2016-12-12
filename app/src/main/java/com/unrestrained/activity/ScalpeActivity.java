@@ -20,6 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dalvik.system.DexClassLoader;
 
+/**
+ * mvp
+ */
 public class ScalpeActivity extends AppCompatActivity implements LoadDataView {
     private LoadDataPresenter mLoadDataPresenter;
 
