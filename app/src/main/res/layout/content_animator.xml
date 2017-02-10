@@ -5,28 +5,42 @@
     android:id="@+id/content_animator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.unrestrained.activity.AnimatorActivity"
     tools:showIn="@layout/activity_animator">
 
-    <!--    <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_click1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/example_appwidget_preview"
+                android:text="点击" />
+
+            <Button
+                android:id="@+id/btn_click2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/example_appwidget_preview"
+                android:text="点击" />
+
+        </FrameLayout>
+
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_click0"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="click0"
-            android:text="点击" />
+            android:background="@drawable/example_appwidget_preview"
+            android:onClick="click0" />
 
         <TextView
             android:id="@+id/tv"
@@ -35,32 +49,51 @@
             android:text="这是一个显示的文本哦" />
 
 
-        <fragment
-            android:id="@+id/fragment"
-            android:name="com.unrestrained.widget.ItemFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <com.unrestrained.widget.AutoTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#f00"
+                android:text="阿照跟" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#0f0"
+                android:text="这个爸爸。" />
 
 
-        <!--  <com.unrestrained.widget.MyView
-              android:layout_width="300dp"
-              android:layout_height="300dp"
-              android:background="#ccc"
-              android:paddingBottom="40dp"
-              android:paddingLeft="20dp"
-              app:exampleColor="#33b5e5"
-              app:exampleDimension="24sp"
-              app:exampleDrawable="@android:drawable/ic_menu_add"
-              app:exampleString="Hello, MyView" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#00f"
+                android:text="阿照在" />
 
-          <com.unrestrained.widget.PaintView
-              android:layout_width="300dp"
-              android:layout_height="300dp"></com.unrestrained.widget.PaintView>-->
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="「今天老宋那张遗" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="者拍了什么？" />
+
+
+        </com.unrestrained.widget.AutoTextView>
 
     </LinearLayout>
 
     <!--</android.support.v4.widget.NestedScrollView>-->
-
 
 </RelativeLayout>

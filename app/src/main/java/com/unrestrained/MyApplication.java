@@ -5,8 +5,12 @@ import android.support.multidex.MultiDexApplication;
 import android.telephony.TelephonyManager;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.lzy.okhttputils.OkHttpUtils;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.unrestrained.utils.CrashHandler;
+import com.unrestrained.utils.ToastUtility;
+
+import org.xutils.x;
 
 import java.util.HashSet;
 
@@ -45,12 +49,33 @@ public class MyApplication extends MultiDexApplication {
                     @Override
                     public void call(Boolean aBoolean) {
                         if (aBoolean) {
-                           // Toast.makeText(getApplicationContext(), "true", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(getApplicationContext(), "true", Toast.LENGTH_SHORT).show();
                         } else {
-                           // Toast.makeText(getApplicationContext(), "false", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(getApplicationContext(), "false", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
+        x.Ext.init(this);
+        OkHttpUtils.init(this);
+
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.put("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+//        headers.put("Accept-Encoding","gzip, deflate");
+//        headers.put("Accept-Language","zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
+//        headers.put("Cache-Control","max-age=0");
+//        headers.put("Connection","keep-alive");
+//        headers.put("Upgrade-Insecure-Requests","1");
+//        headers.put("User-Agent","Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:49.0) Gecko/20100101 Firefox/49.0");
+
+
+        OkHttpUtils.getInstance().setConnectTimeout(3 * 1000)
+                .setReadTimeOut(3 * 1000)
+                .setWriteTimeOut(3 * 1000)
+//                .addCommonHeaders(headers)
+        ;
+
+        ToastUtility.init(this);
 
     }
 

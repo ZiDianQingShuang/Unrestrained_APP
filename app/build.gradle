@@ -14,6 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+        vectorDrawables.useSupportLibrary true
     }
     buildTypes {  //这里面可以配置debug和release版本的一些参数，比如混淆、签名配置等
         debug {
@@ -77,16 +78,17 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-//    compile('com.android.support:support-v4:24.1.1') {
-////java.lang.NoSuchMethodError: android.support.v4.graphics.drawable.DrawableCompat.setLayoutDirection  http://www.cnblogs.com/liyiran/p/5647509.html
-//        force = true;
-//    }
-//    compile('com.android.support:recyclerview-v7:24.1.1') {
-////java.lang.NoSuchMethodError: android.support.v4.graphics.drawable.DrawableCompat.setLayoutDirection  http://www.cnblogs.com/liyiran/p/5647509.html
-//        exclude module: 'support-v4'
-//    }
+    //    compile('com.android.support:support-v4:24.1.1') {
+    ////java.lang.NoSuchMethodError: android.support.v4.graphics.drawable.DrawableCompat.setLayoutDirection  http://www.cnblogs.com/liyiran/p/5647509.html
+    //        force = true;
+    //    }
+    //    compile('com.android.support:recyclerview-v7:24.1.1') {
+    ////java.lang.NoSuchMethodError: android.support.v4.graphics.drawable.DrawableCompat.setLayoutDirection  http://www.cnblogs.com/liyiran/p/5647509.html
+    //        exclude module: 'support-v4'
+    //    }
     //简化findViewById
     ///compile 'compile 'com.github.chrisbanes:PhotoView:1.3.0''
+    compile 'com.github.chrisbanes:PhotoView:1.3.0'
     /*google*/
     /*squareup包*/
     //    apt 'com.google.dagger:dagger-compiler:2.2'
@@ -125,8 +127,8 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.3.0'
     compile 'com.google.dagger:dagger:2.2'
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
     compile 'com.squareup.okio:okio:1.9.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -166,6 +168,12 @@ dependencies {
     }
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.3.0'
+    compile 'org.litepal.android:core:1.3.2'
+    compile 'com.ms-square:expandableTextView:0.1.4' //可展开关闭的TextView
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'//Android沉浸式状态栏SystemBarTint的使用方法
+    compile 'com.squareup:otto:+'
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile 'com.yuyh.easyguideview:library:1.1.0'
 }
 
 /***

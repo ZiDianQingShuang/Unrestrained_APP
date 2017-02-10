@@ -31,6 +31,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
@@ -238,7 +239,15 @@
             android:name=".activity.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.LocalGPSActivity" />
+        <activity android:name=".activity.ViewActivity" />
 
+        <service
+            android:name=".service.TimeService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.EasyguideviewActivity"></activity>
     </application>
 
 </manifest>

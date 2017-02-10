@@ -1,11 +1,15 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Base application theme. Theme.AppCompat.Light.DarkActionBar-->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -48,5 +52,26 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
+    <style name="night" parent="Theme.AppCompat.DayNight"></style>
+    <!--日间模式 -->
+    <style name="DayTheme" parent="AppTheme">
+        <item name="zzbackground">@color/dayBackground</item>
+        <item name="zzbackgroundDrawable">@drawable/ic_launcher</item>
+        <item name="zztextColor">@color/dayTextColor</item>
+        <item name="zzItemBackground">@color/dayItemBackground</item>
+    </style>
+    <!--夜间模式 -->
+    <style name="NightTheme" parent="AppTheme">
+        <item name="zzbackground">@color/nightBackground</item>
+        <item name="zzbackgroundDrawable">@color/nightBackground</item>
+        <item name="zztextColor">@color/nightTextColor</item>
+        <item name="zzItemBackground">@color/nightItemBackground</item>
+
+        <!--<item name="colorPrimary">@color/colorPrimaryNight</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkNight</item>
+        <item name="colorAccent">@color/colorAccentNight</item>-->
+    </style>
+
 
 </resources>

@@ -5,4 +5,10 @@
         <attr name="exampleColor" format="color" />
         <attr name="exampleDrawable" format="color|reference" />
     </declare-styleable>
+
+    <attr name="zzbackground" format="color|reference" />
+    <attr name="zzbackgroundDrawable" format="reference" />
+    <attr name="zztextColor" format="color" />
+    <attr name="zzItemBackground" format="color" />
+
 </resources>

@@ -139,6 +139,18 @@ public class MainActivity extends AppCompatActivity {
 //        NewMessageNotification.notify(getApplicationContext(), "通知来了", 0);
     }
 
+    public void localGPS(View view){
+        startActivity(new Intent(this,LocalGPSActivity.class));
+
+    }
+
+    public void defineView(View view){
+        startActivity(new Intent(this,ViewActivity.class));
+    }
+
+    public void navView(View view ){
+        startActivity(new Intent(this,EasyguideviewActivity.class));
+    }
 
     @Override
     protected void onResume() {
